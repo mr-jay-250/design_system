@@ -56,7 +56,7 @@ function Color({ colorId, colorData }) {
     }));
     setColorOrder(prevOrder => [...prevOrder, newName]);
 
-    const response = await fetch('http://localhost:4000/colors', {
+    const response = await fetch('https://design-system-api.onrender.com/colors', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ projectId: colorId, colorName: newName, hexValue: '#000000', variantCount: 5 })
@@ -79,7 +79,7 @@ function Color({ colorId, colorData }) {
         ))}
         <button onClick={handleAddColor}>+</button>
         <button onClick={async () => {
-          const response = await fetch(`http://localhost:4000/color/${colorId}`, {
+          const response = await fetch(`https://design-system-api.onrender.com/color/${colorId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(colorValues)

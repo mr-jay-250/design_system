@@ -8,7 +8,7 @@ function Profile() {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const response = await fetch(`http://localhost:4000/users/${userId}/profile`);
+      const response = await fetch(`https://design-system-api.onrender.com/users/${userId}/profile`);
       const data = await response.json();
       setProfile(data);
     };

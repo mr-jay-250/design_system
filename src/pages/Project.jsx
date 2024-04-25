@@ -16,7 +16,7 @@ function ProjectPage() {
 
   useEffect(() => {
     const fetchProject = async () => {
-      const response = await fetch(`http://localhost:4000/projects/${id_of_project}`);
+      const response = await fetch(`https://design-system-api.onrender.com/projects/${id_of_project}`);
       const data = await response.json();
       
       setProjectName(data.name);
