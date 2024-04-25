@@ -1,0 +1,35 @@
+.form-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.form {
+  display: inline-block;
+  text-align: left;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 40rem;
+}
+
+.input-field {
+  width: -webkit-fill-available;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 15px;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  background-color: #1890ff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

@@ -1,0 +1,63 @@
+.container {
+  display: flex;
+}
+
+.sidebar {
+  flex: 1;
+  border-right: 1px solid #ccc;
+  padding: 20px;
+}
+
+.boxes {
+  flex: 2;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+}
+
+.accordion {
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  transition: background-color 0.3s ease;
+}
+
+.accordion:hover {
+  background-color: #f0f0f0;
+}
+
+.accordion.active {
+  background-color: #e0e0e0;
+}
+
+.accordion h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.accordion label {
+  display: block;
+  margin-top: 10px;
+}
+
+.accordion input[type="text"],
+.accordion input[type="number"] {
+  width: -webkit-fill-available;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.accordion input[type="color"] {
+  margin-top: 10px;
+}

@@ -1,0 +1,44 @@
+.navbar {
+  background-color: #001529;
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navLinks {
+  display: flex;
+  gap: 80px;
+  align-items: center;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+}
+
+.navList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navItem {
+  display: inline-block;
+}
+
+.navLink {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.logoutButton {
+  background-color: #1890ff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
