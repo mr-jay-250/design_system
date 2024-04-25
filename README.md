@@ -20,11 +20,4 @@ You can look into the backend PR for APIs [Design System API](https://github.com
 
 ### Deployment
 
-
 You can visit the live deployed link: [Design System](https://design-system-nine-alpha.vercel.app/).
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
