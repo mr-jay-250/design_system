@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styles from '../styles/color.module.css';
 
 function Color({ colorId, colorData }) {
@@ -14,7 +14,8 @@ function Color({ colorId, colorData }) {
         colors[color.colorName] = {
           name: color.colorName,
           hex: color.hexValue,
-          count: color.variantCount
+          count: color.variantCount,
+          id: color.id
         };
         order.push(color.colorName);
       });
@@ -49,14 +50,22 @@ function Color({ colorId, colorData }) {
   };
 
   const handleAddColor = async () => {
-    const newName = 'New Color';
+    const baseName = 'New Color';
+    let newName = baseName;
+    let suffix = 1;
+    
+    // Generate a unique color name
+    while (colorValues[newName]) {
+      newName = `${baseName} ${suffix.toString().padStart(2, '0')}`;
+      suffix++;
+    }
     setColorValues(prevValues => ({
       ...prevValues,
       [newName]: { name: newName, hex: '#000000', count: 5 },
     }));
     setColorOrder(prevOrder => [...prevOrder, newName]);
 
-    const response = await fetch('https://design-system-api.onrender.com/colors', {
+    const response = await fetch('http://localhost:4000/colors', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ projectId: colorId, colorName: newName, hexValue: '#000000', variantCount: 5 })
@@ -79,7 +88,7 @@ function Color({ colorId, colorData }) {
         ))}
         <button onClick={handleAddColor}>+</button>
         <button onClick={async () => {
-          const response = await fetch(`https://design-system-api.onrender.com/color/${colorId}`, {
+          const response = await fetch(`http://localhost:4000/color/${colorId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(colorValues)
@@ -101,6 +110,14 @@ function Color({ colorId, colorData }) {
 }
 
 function Accordion({ color, onColorChange, onColorSelect, isSelected }) {
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (isSelected && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isSelected]);
+
   return (
     <div onClick={() => onColorSelect(color.name)} className={`${styles.accordion} ${isSelected ? styles.active : ''}`}>
       <h2>{color.name}</h2>
@@ -112,6 +129,7 @@ function Accordion({ color, onColorChange, onColorSelect, isSelected }) {
               type="text"
               value={color.name}
               onChange={e => onColorChange(color.name, 'name', e.target.value)}
+              ref={inputRef}
             />
           </label>
           <label>

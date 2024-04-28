@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Color from '../components/Color';
 import Radius from '../components/Radius';
 import Spacing from '../components/Spacing';
+import UserInteractionComponent from '../components/UserInteractionComponent';
 import '../styles/project.css';
 
 function ProjectPage() {
@@ -16,7 +17,7 @@ function ProjectPage() {
 
   useEffect(() => {
     const fetchProject = async () => {
-      const response = await fetch(`https://design-system-api.onrender.com/projects/${id_of_project}`);
+      const response = await fetch(`http://localhost:4000/projects/${id_of_project}`);
       const data = await response.json();
       
       setProjectName(data.name);
@@ -38,35 +39,48 @@ function ProjectPage() {
         <h1>Project: {projectName}</h1>
         <nav className="navbar">
           <ul>
-            <li><button className={activeComponent === 'color' ? 'active' : ''} onClick={() => handleSetActiveComponent('color')}>Color</button></li>
-            <li><button className={activeComponent === 'radius' ? 'active' : ''} onClick={() => handleSetActiveComponent('radius')}>Radius</button></li>
-            <li><button className={activeComponent === 'spacing' ? 'active' : ''} onClick={() => handleSetActiveComponent('spacing')}>Spacing</button></li>
+            <li><button onClick={() => handleSetActiveComponent('color')} className={activeComponent === 'color' ? 'active' : ''}>Color</button></li>
+            <li><button onClick={() => handleSetActiveComponent('radius')} className={activeComponent === 'radius' ? 'active' : ''}>Radius</button></li>
+            <li><button onClick={() => handleSetActiveComponent('spacing')} className={activeComponent === 'spacing' ? 'active' : ''}>Spacing</button></li>
+            <li><button onClick={() => handleSetActiveComponent('user-component')} className={activeComponent === 'user-component' ? 'active' : ''}>User Component</button></li>
           </ul>
         </nav>
       </div>
 
       <div className="section">
-          {activeComponent === 'color' && (
-            <>
-              <h2>Color</h2>
-              <Color colorId={colorId} colorData={project.colors} />
-            </>
-          )}
+        {activeComponent === 'color' && (
+          <>
+            <h2>Color</h2>
+            <Color colorId={colorId} colorData={project.colors} />
+          </>
+        )}
 
-          {activeComponent === 'radius' && (
-            <>
-              <h2>Radius</h2>
-              <Radius radiusId={radiusId} radiusData={project.radiu} />
-            </>
-          )}
+        {activeComponent === 'radius' && (
+          <>
+            <h2>Radius</h2>
+            <Radius radiusId={radiusId} radiusData={project.radiu} />
+          </>
+        )}
 
-          {activeComponent === 'spacing' && (
-            <>
-              <h2>Spacing</h2>
-              <Spacing spacingId={spacingId} spacingData={project.spacing} />
-            </>
-          )}
-        </div>
+        {activeComponent === 'spacing' && (
+          <>
+            <h2>Spacing</h2>
+            <Spacing spacingId={spacingId} spacingData={project.spacing} />
+          </>
+        )}
+
+        {activeComponent === 'user-component' && (
+          <>
+            <h2>User Component</h2>
+            <UserInteractionComponent
+              colorData={project.colors}
+              colorVariants={['#ff0000', '#00ff00', '#0000ff']} // Example colors
+              radiusVariants={['5px', '10px', '15px']} // Example radii
+              spacingVariants={['100px', '150px', '200px']} // Example spacings
+            />
+          </>
+        )}
+      </div>
     </>
   );
 }

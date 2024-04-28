@@ -85,7 +85,7 @@ function RadiusInput({ radius, onRadiusChange, radiusId }) {
         />
       </label>
       <button className={styles.button} onClick={async () => {
-        const response = await fetch(`https://design-system-api.onrender.com/radius/${radiusId}`, {
+        const response = await fetch(`http://localhost:4000/radius/${radiusId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(radius)

@@ -1,0 +1,84 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.colorContainer, .sizeContainer {
+  flex: 1;
+}
+
+.colorGroup {
+  margin-bottom: 20px;
+}
+
+.colorButton {
+  width: 100px;
+  height: 40px;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.sizeGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.sizeInput {
+  margin-right: 10px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.sizeInput[type="checkbox"], .sizeInput[type="radio"] {
+  width: 20px;
+  height: 20px;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.selectContainer {
+  background-color: #daffd3;
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+}
+
+.selectContainer {
+  background-color: #daffd3;
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+}
+
+.sizeContainer h2 {
+  margin-bottom: 10px;
+}
+
+.sizeContainer label {
+  margin-right: 10px;
+}
+
+.sizeContainer select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.sizeContainer select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.sizeContainer select option {
+  padding: 8px;
+}

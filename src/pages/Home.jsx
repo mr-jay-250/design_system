@@ -10,7 +10,7 @@ function HomePage() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch(`https://design-system-api.onrender.com/users/${localStorage.getItem('userId')}/projects`);
+        const response = await fetch(`http://localhost:4000/users/${localStorage.getItem('userId')}/projects`);
         const data = await response.json();
         setProjects(data.projects);
       } catch (error) {
@@ -26,7 +26,7 @@ function HomePage() {
 
   const handleCreateProject = async () => {
     try {
-      const response = await fetch('https://design-system-api.onrender.com/projects', {
+      const response = await fetch('http://localhost:4000/projects', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: projectName, userId: localStorage.getItem('userId') })
