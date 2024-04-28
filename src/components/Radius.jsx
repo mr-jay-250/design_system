@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/radius.module.css';
 
-function Radius({ radiusId, radiusData }) {
+function Radius({ radiusId, radiusData, setKey }) {
   const [radiusValues, setRadiusValues] = useState({
     sharpRadius: false,
-    baseSize: radiusData.baseValue,
+    baseValue: radiusData.baseValue,
     variantCount: radiusData.variantCount,
     multiplier: radiusData.multiplier,
   });
@@ -23,6 +23,7 @@ function Radius({ radiusId, radiusData }) {
           radius={radiusValues}
           onRadiusChange={handleRadiusChange}
           radiusId={radiusId}
+          setKey={setKey}
         />
       </div>
       <div className={styles.right}>
@@ -35,7 +36,7 @@ function Radius({ radiusId, radiusData }) {
   );
 }
 
-function RadiusInput({ radius, onRadiusChange, radiusId }) {
+function RadiusInput({ radius, onRadiusChange, radiusId, setKey }) {
   return (
     <div className={styles.inputContainer}>
       <label className={styles.label}>
@@ -53,8 +54,8 @@ function RadiusInput({ radius, onRadiusChange, radiusId }) {
       <label className={styles.label}>
         Base Size:
         <select
-          value={radius.baseSize}
-          onChange={e => onRadiusChange('baseSize', Number(e.target.value))}
+          value={radius.baseValue}
+          onChange={e => onRadiusChange('baseValue', Number(e.target.value))}
           disabled={radius.sharpRadius}
         >
           {[...Array(33).keys()].map(i => (
@@ -91,6 +92,7 @@ function RadiusInput({ radius, onRadiusChange, radiusId }) {
           body: JSON.stringify(radius)
         });
         const data = await response.json();
+        setKey(prevKey => prevKey + 1);
         console.log(data.message);
       }}>Save Radius</button>
     </div>
@@ -99,18 +101,18 @@ function RadiusInput({ radius, onRadiusChange, radiusId }) {
 
 function RadiusBox({ radius, onRadiusChange }) {
   const [sizes, setSizes] = useState(
-    [...Array(radius.variantCount)].map((_, i) => radius.baseSize * radius.multiplier ** i)
+    [...Array(radius.variantCount)].map((_, i) => radius.baseValue * radius.multiplier ** i)
   );
 
   useEffect(() => {
     setSizes(
-      [...Array(radius.variantCount)].map((_, i) => radius.baseSize * radius.multiplier ** i)
+      [...Array(radius.variantCount)].map((_, i) => radius.baseValue * radius.multiplier ** i)
     );
-  }, [radius.baseSize, radius.multiplier, radius.variantCount]);
+  }, [radius.baseValue, radius.multiplier, radius.variantCount]);
 
   const handleSizeChange = (index, value) => {
     if (index === 0) {
-      onRadiusChange('baseSize', Number(value));
+      onRadiusChange('baseValue', Number(value));
     } else {
       const newSizes = [...sizes];
       newSizes[index] = value;

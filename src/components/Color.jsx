@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styles from '../styles/color.module.css';
 
-function Color({ colorId, colorData }) {
+function Color({ colorId, colorData, setKey }) {
   const [colorValues, setColorValues] = useState({});
   const [colorOrder, setColorOrder] = useState([]);
   const [selectedColor, setSelectedColor] = useState('');
@@ -19,7 +19,6 @@ function Color({ colorId, colorData }) {
         };
         order.push(color.colorName);
       });
-      console.log('colors.......',colors);
       setColorValues(colors);
       setColorOrder(order);
       setSelectedColor(order[0]);
@@ -94,6 +93,7 @@ function Color({ colorId, colorData }) {
             body: JSON.stringify(colorValues)
           });
           const data = await response.json();
+          setKey(prev => prev+1)
           console.log(data.message);
         }}>Save Color</button>
       </div>

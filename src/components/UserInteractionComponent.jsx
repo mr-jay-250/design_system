@@ -33,7 +33,7 @@ function UserInteractionComponent() {
     const { spacing } = project;
 
     if (spacing) {
-      const { baseValue, variantCount } = radiu;
+      const { baseValue, variantCount } = spacing;
       setSpacingValues({ baseValue, variantCount });
     }
   }, [project]);
@@ -114,6 +114,7 @@ function UserInteractionComponent() {
         <div style={{ border: '1px solid black', marginBottom: '20px' }} />
         {sizes.map((size, i) => (
           <div key={i} className={styles.sizeGroup}>
+            <p style={{ margin: '0' }}>Border-Radius: {size}</p>
             <div className={styles.inputContainer}>
               <label htmlFor={`text-${i}`}>Text:</label>
               <input
@@ -168,7 +169,7 @@ function UserInteractionComponent() {
             key={i}
             style={{
               display: "flex",
-              gap: `${(size += 2)}px`,
+              gap: `${(size)}px`,
             }}
             className={styles.selectSpacingContainer}
           >

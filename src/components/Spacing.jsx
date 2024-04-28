@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/spacings.module.css';
 
-function Spacing({ spacingId, spacingData }) {
+function Spacing({ spacingId, spacingData, setKey }) {
   const [spacingValues, setSpacingValues] = useState({
     baseValue: spacingData.baseValue,
     variantCount: spacingData.variantCount,
@@ -20,6 +20,7 @@ function Spacing({ spacingId, spacingData }) {
         spacingId={spacingId}
         spacing={spacingValues}
         onSpacingChange={handleSpacingChange}
+        setKey={setKey}
       />
       <SpacingBox
         spacing={spacingValues}
@@ -29,7 +30,7 @@ function Spacing({ spacingId, spacingData }) {
   );
 }
 
-function SpacingInput({ spacingId, spacing, onSpacingChange }) {
+function SpacingInput({ spacingId, spacing, onSpacingChange, setKey }) {
   return (
     <div className={styles.inputContainer}>
       <label className={styles.label}>
@@ -62,6 +63,7 @@ function SpacingInput({ spacingId, spacing, onSpacingChange }) {
           body: JSON.stringify(spacing)
         });
         const data = await response.json();
+        setKey(prev => prev+1);
         console.log(data.message);
       }}>Save Spacing</button>
     </div>

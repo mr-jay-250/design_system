@@ -14,6 +14,7 @@ function ProjectPage() {
   const [colorId, setColorId] = useState(null);
   const [radiusId, setRadiusId] = useState(null);
   const [project, setProject] = useState({});
+  const [key, setKey] = useState(0);
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -27,7 +28,7 @@ function ProjectPage() {
       setProject(data);
     };
     fetchProject();
-  }, [id_of_project]);
+  }, [id_of_project, key]);
 
   const handleSetActiveComponent = (component) => {
     setActiveComponent(component);
@@ -51,21 +52,21 @@ function ProjectPage() {
         {activeComponent === 'color' && (
           <>
             <h2>Color</h2>
-            <Color colorId={colorId} colorData={project.colors} />
+            <Color colorId={colorId} colorData={project.colors} setKey={setKey} />
           </>
         )}
 
         {activeComponent === 'radius' && (
           <>
             <h2>Radius</h2>
-            <Radius radiusId={radiusId} radiusData={project.radiu} />
+            <Radius radiusId={radiusId} radiusData={project.radiu} setKey={setKey} />
           </>
         )}
 
         {activeComponent === 'spacing' && (
           <>
             <h2>Spacing</h2>
-            <Spacing spacingId={spacingId} spacingData={project.spacing} />
+            <Spacing spacingId={spacingId} spacingData={project.spacing} setKey={setKey} />
           </>
         )}
 
