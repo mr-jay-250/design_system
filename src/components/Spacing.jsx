@@ -56,7 +56,7 @@ function SpacingInput({ spacingId, spacing, onSpacingChange }) {
       </label>
 
       <button className={styles.button} onClick={async () => {
-        const response = await fetch(`http://localhost:4000/spacing/${spacingId}`, {
+        const response = await fetch(`https://design-system-api.onrender.com/spacing/${spacingId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(spacing)

@@ -14,7 +14,7 @@ function UserInteractionComponent() {
   useEffect(() => {
     const fetchProject = async () => {
       const response = await fetch(
-        `http://localhost:4000/projects/${id_of_project}`
+        `https://design-system-api.onrender.com/projects/${id_of_project}`
       );
       const data = await response.json();
 
